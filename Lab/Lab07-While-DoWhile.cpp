@@ -48,12 +48,58 @@
         Do you want to play game (1=play,-1=exit) :
             -1
 */
-
+#include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
 int main() {
+    int score=100;
+    int playagian=1;
+do{
+    srand(time(NULL));
 
-    //--| YOUR CODE HERE
+    while (playagian == 1) {
+    printf(" Do you want to play game (1=play,-1=exit) :");
+    scanf("%d" ,&playagian);
+    
+    if (playagian == -1){
+        break;   
+    }
 
-    return 0 ;
-}//end main function
+    score=100;
+
+    printf("(score=%d)\n" , score);
+    
+    int winningnumber= rand() % 100 + 1 ;
+    int guess ;
+
+    while (1)
+    {
+       while (1) {
+            printf("Guess the winning number (1-100): ");
+            scanf("%d", &guess);
+
+            if (guess < winningnumber) {
+                printf("Sorry, the winning number is HIGHER than %d. (Score=%d)\n", guess, score -= 10);
+            } else if (guess > winningnumber) {
+                printf("Sorry, the winning number is LOWER than %d. (Score=%d)\n", guess, score -= 10);
+            } else {
+                printf("That is correct! The winning number is %d.\n",winningnumber);
+                printf("Score this game: %d\n", score);
+                return 0;
+            }
+
+            if (score <= 0) {
+                printf("Game over! You've run out of points.\n");
+                return  0;
+            }
+        }
+    }
+
+    }
+}while (1 != -1); 
+return 0 ;
+}
+    
+
+//หมดเวรหมดกรรมคาบนี้
